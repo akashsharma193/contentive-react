@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Shield, Globe, Download, Play, Pause, FileText } from "lucide-react";
 
-const Products = () => {
+const Products = ({ onPrivacyClick }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const videoRef = useRef(null);
@@ -25,7 +25,6 @@ const Products = () => {
     setShowControls(true);
   };
 
-  // Hide controls after 1 second when video starts playing
   useEffect(() => {
     let timer;
     if (isPlaying) {
@@ -51,7 +50,6 @@ const Products = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - App information */}
           <div className="space-y-8">
             <Card className="tech-card">
               <CardHeader>
@@ -94,30 +92,29 @@ const Products = () => {
               </CardContent>
             </Card>
 
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="flex items-center gap-2"
                 onClick={() => window.open('https://play.google.com/store/apps/details?id=com.contentive.crackitx&hl=en_IN', '_blank')}
               >
                 <Download className="w-5 h-5" />
                 Download App
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="flex items-center gap-2"
                 onClick={() => window.open('https://lightskyblue-hummingbird-752521.hostingersite.com/', '_blank')}
               >
                 <Globe className="w-5 h-5" />
                 Visit Website
               </Button>
-              <Button 
-                variant="secondary" 
-                size="lg" 
+              <Button
+                variant="secondary"
+                size="lg"
                 className="flex items-center gap-2"
-                onClick={() => window.open('https://contentive.in/privacy', '_blank')}
+                onClick={onPrivacyClick}
               >
                 <FileText className="w-5 h-5" />
                 Privacy Policy
@@ -125,11 +122,9 @@ const Products = () => {
             </div>
           </div>
 
-          {/* Right side - Video demo */}
           <div className="space-y-4">
             <Card className="overflow-hidden">
               <div className="relative aspect-video bg-muted/50">
-                {/* Video element */}
                 <video
                   ref={videoRef}
                   className="absolute inset-0 w-full h-full object-contain rounded-lg"
@@ -138,12 +133,10 @@ const Products = () => {
                   onPause={() => setIsPlaying(false)}
                 >
                   <source src="/crackit-demo.mp4" type="video/mp4" />
-                  {/* Add more source elements for different video formats if needed */}
                   <source src="/crackit-demo.webm" type="video/webm" />
                   Your browser does not support the video tag.
                 </video>
 
-                {/* Play/Pause overlay - only show when controls should be visible */}
                 {showControls && (
                   <div
                     className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20 hover:bg-black/30 transition-colors"
@@ -169,7 +162,6 @@ const Products = () => {
                   </div>
                 )}
 
-                {/* Invisible clickable area when controls are hidden */}
                 {!showControls && isPlaying && (
                   <div
                     className="absolute inset-0 cursor-pointer"
@@ -177,7 +169,6 @@ const Products = () => {
                   />
                 )}
 
-                {/* Gradient overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg pointer-events-none"></div>
               </div>
             </Card>

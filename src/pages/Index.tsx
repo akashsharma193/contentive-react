@@ -1,43 +1,57 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 const Index = () => {
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  const handleShowPrivacy = () => {
+    setShowPrivacy(true);
+  };
+
+  const handleBackToHome = () => {
+    setShowPrivacy(false);
+  };
+
+  if (showPrivacy) {
+    return <PrivacyPolicy onBack={handleBackToHome} />;
+  }
+
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main>
         <section id="home">
           <Hero />
         </section>
-        
+
         <section id="products">
-          <Products />
+          <Products onPrivacyClick={handleShowPrivacy} />
         </section>
-        
+
         <section id="services">
           <Services />
         </section>
-        
+
         <section id="about">
           <About />
         </section>
-        
+
         <section id="contact">
           <Contact />
         </section>
       </main>
-      
-      {/* Footer */}
+
       <footer className="bg-muted/50 py-8 border-t">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center space-y-4">
-            {/* Social Media Icons */}
             <div className="flex space-x-6">
               <a
                 href="https://www.instagram.com/contentive_tech_solutions?utm_source=qr&igsh=MWlhMWZ0M203eXc4Nw=="
@@ -48,7 +62,7 @@ const Index = () => {
               >
                 <Instagram className="h-5 w-5" />
               </a>
-              
+
               <a
                 href="https://www.linkedin.com/in/contentive-tech-solutions/"
                 target="_blank"
@@ -58,7 +72,7 @@ const Index = () => {
               >
                 <Linkedin className="h-5 w-5" />
               </a>
-              
+
               <a
                 href="https://www.facebook.com/profile.php?id=61580012274379"
                 target="_blank"
@@ -69,8 +83,7 @@ const Index = () => {
                 <Facebook className="h-5 w-5" />
               </a>
             </div>
-            
-            {/* Copyright Text */}
+
             <p className="text-muted-foreground text-center">
               © 2025 Contentive Tech Solutions. All rights reserved. | Transforming businesses through technology.
             </p>
