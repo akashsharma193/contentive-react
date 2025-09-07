@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Shield, Globe, Download, Play, Pause, FileText } from "lucide-react";
+import { Shield, Globe, Download, Play, Pause } from "lucide-react";
 
-const Products = ({ onPrivacyClick }) => {
+const Products = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const videoRef = useRef(null);
@@ -109,15 +109,6 @@ const Products = ({ onPrivacyClick }) => {
               >
                 <Globe className="w-5 h-5" />
                 Visit Website
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="flex items-center gap-2"
-                onClick={onPrivacyClick}
-              >
-                <FileText className="w-5 h-5" />
-                Privacy Policy
               </Button>
             </div>
           </div>

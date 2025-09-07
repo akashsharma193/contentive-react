@@ -1,28 +1,12 @@
-import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
-import PrivacyPolicy from "@/components/PrivacyPolicy";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 const Index = () => {
-  const [showPrivacy, setShowPrivacy] = useState(false);
-
-  const handleShowPrivacy = () => {
-    setShowPrivacy(true);
-  };
-
-  const handleBackToHome = () => {
-    setShowPrivacy(false);
-  };
-
-  if (showPrivacy) {
-    return <PrivacyPolicy onBack={handleBackToHome} />;
-  }
-
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -33,7 +17,7 @@ const Index = () => {
         </section>
 
         <section id="products">
-          <Products onPrivacyClick={handleShowPrivacy} />
+          <Products />
         </section>
 
         <section id="services">
